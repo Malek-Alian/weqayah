@@ -1,0 +1,240 @@
+{
+  "common": {
+    "welcome": "مرحباً",
+    "hello": "أهلاً",
+    "goodbye": "وداعاً",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "search": "بحث",
+    "filter": "تصفية",
+    "sort": "ترتيب",
+    "refresh": "تحديث",
+    "previous": "السابق",
+    "next": "التالي",
+    "pleaseWait": "يرجى الإنتظار"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "findDoctor": "طبيب",
+    "medicalNews": "الأخبار الطبية",
+    "ourBlogs": "المدونات",
+    "about": "حول",
+    "help": "المساعدة",
+    "signIn": "تسجيل الدخول",
+    "signUp": "تسجيل الحساب",
+    "admin": "لوحة الإدارة",
+    "signOut": "تسجيل الخروج",
+    "account": "الحساب"
+  },
+  "theme": {
+    "light": "الوضع النهاري",
+    "dark": "الوضع الليلي",
+    "toggle": "تبديل الوضع"
+  },
+  "language": {
+    "select": "اختر اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "لوحة الإدارة",
+      "subtitle": "إدارة تطبيقك من هنا"
+    },
+    "sidebar": {
+      "title": "لوحة الإدارة",
+      "overview": "المعاينة",
+      "patients": "المرضى",
+      "hospitals": "المستشفيات",
+      "clinics": "العيادات",
+      "doctors": "الأطباء",
+      "news": "الأخبار",
+      "blogs": "المدونات",
+      "advertisements": "الإعلانات",
+      "settings": "الإعدادات",
+      "admin": "مستخدم الإدارة",
+      "role": "مدير",
+      "signOut": "تسجيل الخروج"
+    },
+    "header": {
+      "search": "بحث...",
+      "admin": "مستخدم الإدارة",
+      "role": "مدير",
+      "profile": "الملف الشخصي",
+      "settings": "الإعدادات",
+      "signOut": "تسجيل الخروج"
+    },
+    "stats": {
+      "users": "إجمالي المستخدمين",
+      "doctors": "إجمالي الأطباء",
+      "posts": "إجمالي المنشورات"
+    }
+  },
+  "doctorSearch": {
+    "title": "المستقبل الطبي المشرق",
+    "subtitle": "ابحث عن",
+    "badge": "طبيب",
+    "countryPlaceholder": "اختر البلد",
+    "specialtyPlaceholder": "اختر التخصص",
+    "insurancePlaceholder": "اختر التأمين",
+    "locationPlaceholder": "ابحث بالموقع",
+    "doctorNamePlaceholder": "ابحث باسم الطبيب"
+  },
+  "advertisement": {
+    "placeholder": "الإعلان"
+  },
+  "latestMedicalNews": {
+    "title": "أحدث الأخبار الطبية",
+    "description": "ابق على اطلاع بأحدث التحديثات من عالم الطب. استكشف الأخبار الموثوقة، التحديثات البحثية، والأخبار الطبية المخصصة للحفاظ على اطلاعك على الأحدث.",
+    "readMore": "اقرأ المزيد"
+  },
+  "searchBySpecialty": {
+    "title": "ابحث بالتخصص",
+    "description": "ابحث عن طبيب مختص في تخصص معين.",
+    "readMore": "اقرأ المزيد"
+  },
+  "largestBlogs": {
+    "title": "أحدث المدونات",
+    "description": "هنا يمكنك العثور على قصص المرضى، ومدونات الطبيبين، ومدونات المدونات.",
+    "readMore": "اقرأ المزيد"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "يبدو أن الصفحة التي تبحث عنها قد ضاعت مثل مريض تائه. لا تقلق، فريقنا الطبي هنا لمساعدتك في العثور على طريقك مرة أخرى إلى الصحة والصفحة الصحيحة.",
+    "goHome": "العودة للرئيسية",
+    "findDoctor": "ابحث عن طبيب",
+    "quickLinks": "روابط سريعة"
+  },
+  "footer": {
+    "mission": "في وقاية، نحن أكثر من مجرد منصة رعاية صحية؛ نحن مجتمع رعاية صحية مخصص لتحسين طريقة تواصل المرضى والأطباء. مهمتنا هي تبسيط رحلة الرعاية الصحية وتمكين المرضى من اتخاذ قرارات مدروسة حول صحتهم.",
+    "operatedBy": "تديره شركة سكاي فول إنتربرايزز"
+  },
+  "searchResults": {
+    "availableDoctors": "الأطباء المتاحين",
+    "foundDoctors": "تم العثور على",
+    "doctorsMatchingYourCriteria": "أطباء مطابقين لمعاييرك",
+    "noDoctorsFoundMatchingYourCriteria": "لم يتم العثور على أطباء مطابقين لمعاييرك.",
+    "tryAdjustingYourSearchFilters": "حاول تعديل معايير البحث."
+  },
+  "doctorFilters": {
+    "filters": "التصفيات",
+    "availability": "الفترة المتاحة",
+    "fees": "الرسوم",
+    "gender": "الجنس",
+    "clearAllFilters": "مسح جميع التصفيات",
+    "availableNow": "المتاح الآن",
+    "availableToday": "المتاح اليوم",
+    "availableTomorrow": "المتاح الغد",
+    "thisWeek": "هذا الأسبوع",
+    "0-10": "0 - 10 JD",
+    "10-20": "10 - 20 JD",
+    "20-30": "20 - 30 JD",
+    "30+": "30+ JD",
+    "male": "ذكر",
+    "female": "أنثى"
+  },
+  "doctorCard": {
+    "from": "من",
+    "visitors": "زوار",
+    "specializedIn": "مختص في",
+    "fees": "الرسوم",
+    "feesNote": "لا تشمل العمليات",
+    "nextAvailable": "المتاح التالي",
+    "bookAppointment": "احجز موعد"
+  },
+  "aboutUs": {
+    "title": "حولنا",
+    "description": "في وقاية، نحن أكثر من مجرد منصة رعاية صحية؛ نحن مجتمع رعاية صحية مخصص لتحسين طريقة تواصل المرضى والأطباء. مهمتنا هي تبسيط رحلة الرعاية الصحية وتمكين المرضى من اتخاذ قرارات مدروسة حول صحتهم.",
+    "explore": "استكشف",
+    "whoWeAre": "من نحن",
+    "whoWeAreDescription": "مكان رقيق للمرضى والأطباء، للتواصل وعرض قصصهم.",
+    "whoWeServe": "من نخدم",
+    "whoWeServeDescription": "نخدم كلا من الأطباء والمرضى ونبني الجسر بينهم وننشر قصصهم.",
+    "ourMission": "مهمتنا",
+    "ourMissionDescription": "أن نكون موثوقين بالمجتمع الطبي والمجتمع المرضي على المستوى العالمي.",
+    "ourStory": "قصتنا",
+    "ourStoryDescription": "وقاية كانت خلقت كجسر ومنصة لعرض قصص الأطباء والمرضى وتعبئة الفجوة."
+  },
+  "help": {
+    "title": "المساعدة والدعم",
+    "description": "احصل على المساعدة والدعم لحاجاتك الصحية",
+    "form": {
+      "title": "استمارة المساعدة",
+      "description": "أرسل لنا رسالة وسنقوم بالرد عليك في أقرب وقت.",
+      "name": "الاسم",
+      "namePlaceholder": "أدخل اسمك",
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "subject": "الموضوع",
+      "subjectPlaceholder": "ما هذا عنه؟",
+      "message": "الرسالة",
+      "messagePlaceholder": "وصف مشكلتك أو سؤالك بالتفصيل",
+      "submit": "إرسال"
+    },
+    "faq": {
+      "title": "الأسئلة الشائعة",
+      "description": "ابحث عن الإجابات على الأسئلة الشائعة عن خدماتنا"
+    },
+    "placeholder": {
+      "title": "نحن هنا لمساعدتك",
+      "description": "فريق الدعم الخاص بنا جاهز لمساعدتك في أي سؤال أو مخاوف تقدمها."
+    }
+  },
+  "signUp": {
+    "title": "إنشاء حساب",
+    "subtitle": "هل لديك حساب بالفعل؟",
+    "signInLink": "تسجيل الدخول",
+    "userType": {
+      "patient": "مريض",
+      "doctor": "طبيب"
+    },
+    "form": {
+      "selectRole": "اختر نوعك",
+      "emailAddress": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "أدخل عنوان بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "hidePassword": "إخفاء",
+      "showPassword": "إظهار",
+      "countryResidence": "بلد الإقامة",
+      "countryPlaceholder": "اختر بلدك",
+      "createAccount": "إنشاء حساب",
+      "loading": "جاري إنشاء الحساب..."
+    },
+    "advertisement": "إعلان"
+  },
+  "signIn": {
+    "title": "تسجيل الدخول",
+    "subtitle": "ليس لديك حساب؟",
+    "signUpLink": "إنشاء حساب",
+    "form": {
+      "emailAddress": "عنوان البريد الإلكتروني",
+      "emailPlaceholder": "أدخل عنوان بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "hidePassword": "إخفاء",
+      "showPassword": "إظهار",
+      "signIn": "تسجيل الدخول",
+      "loading": "جاري تسجيل الدخول...",
+      "forgotPassword": "نسيت كلمة المرور؟"
+    },
+    "advertisement": "إعلان"
+  },
+  "medicalNews": {
+    "title": "الأخبار الطبية",
+    "description": "احصل على أحدث التحديثات والاكتشافات في عالم الطب من Weqayah",
+    "readFullArticle": "اقرأ المقال بالكامل",
+    "latestArticles": "أحدث المقالات",
+    "featuredArticle": "المقال المميز",
+    "readMore": "اقرأ المزيد"
+  },
+  "blog": {
+    "latestPosts": "أحدث المقالات"
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "hello": "Hello",
+    "goodbye": "Goodbye",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "refresh": "Refresh",
+    "previous": "Previous",
+    "next": "Next",
+    "pleaseWait": "Please wait"
+  },
+  "navigation": {
+    "home": "Home",
+    "findDoctor": "Find a Doctor",
+    "medicalNews": "Medical News",
+    "ourBlogs": "Our Blogs",
+    "about": "About Us",
+    "help": "Help",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "admin": "Admin Panel",
+    "signOut": "Sign Out",
+    "account": "Account"
+  },
+  "theme": {
+    "light": "Light Theme",
+    "dark": "Dark Theme",
+    "toggle": "Toggle Theme"
+  },
+  "language": {
+    "select": "Select Language",
+    "english": "English",
+    "arabic": "Arabic"
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "subtitle": "Manage your application from here"
+    },
+    "sidebar": {
+      "title": "Admin Panel",
+      "overview": "Overview",
+      "patients": "Patients",
+      "hospitals": "Hospitals",
+      "clinics": "Clinics",
+      "doctors": "Doctors",
+      "news": "News",
+      "blogs": "Blogs",
+      "advertisements": "Advertisements",
+      "settings": "Settings",
+      "admin": "Admin User",
+      "role": "Administrator",
+      "signOut": "Sign Out"
+    },
+    "header": {
+      "search": "Search...",
+      "admin": "Admin User",
+      "role": "Administrator",
+      "profile": "Profile",
+      "settings": "Settings",
+      "signOut": "Sign Out"
+    },
+    "stats": {
+      "users": "Total Users",
+      "doctors": "Total Doctors",
+      "posts": "Total Posts"
+    }
+  },
+  "doctorSearch": {
+    "title": "Bright Medical Future",
+    "subtitle": "Find your",
+    "badge": "Doctor",
+    "countryPlaceholder": "Select Country",
+    "specialtyPlaceholder": "Select Specialty",
+    "insurancePlaceholder": "Select Insurance",
+    "locationPlaceholder": "Search by Location",
+    "doctorNamePlaceholder": "Search by Dr.Name"
+  },
+  "advertisement": {
+    "placeholder": "Advertisement"
+  },
+  "latestMedicalNews": {
+    "title": "Latest Medical News",
+    "description": "Stay informed with the latest updates from the medical world. Explore trusted news, research highlights, and healthcare insights tailored to keep you and your family up to date.",
+    "readMore": "Read More"
+  },
+  "searchBySpecialty": {
+    "title": "Search by Specialty",
+    "description": "Search for a specific specialty to find a doctor who specializes in that area.",
+    "readMore": "Read More"
+  },
+  "largestBlogs": {
+    "title": "Our Latest Blog Posts",
+    "description": "Here you can find patient stories, doctors blogs, and blog posts.",
+    "readMore": "Read More"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for seems to have wandered off like a lost patient. Don't worry, our medical team is here to help you find your way back to health and the right page.",
+    "goHome": "Go Home",
+    "findDoctor": "Find a Doctor",
+    "quickLinks": "Quick Links"
+  },
+  "footer": {
+    "mission": "At Weqayah, we're more than just a healthcare platform; we're a healthcare community dedicated to improving the way patients and doctors connect. Our mission is to simplify the healthcare journey and empower patients to make informed decisions about their health.",
+    "operatedBy": "Operated by Skyfall Enterprises"
+  },
+  "searchResults": {
+    "availableDoctors": "Available Doctors",
+    "foundDoctors": "Found",
+    "doctorsMatchingYourCriteria": "doctors matching your criteria",
+    "noDoctorsFoundMatchingYourCriteria": "No doctors found matching your criteria.",
+    "tryAdjustingYourSearchFilters": "Try adjusting your search filters."
+  },
+  "doctorFilters": {
+    "filters": "Filters",
+    "availability": "Availability",
+    "fees": "Fees",
+    "gender": "Gender",
+    "clearAllFilters": "Clear All Filters",
+    "availableNow": "Available Now",
+    "availableToday": "Available Today",
+    "availableTomorrow": "Available Tomorrow",
+    "thisWeek": "This Week",
+    "0-10": "0 - 10 JD",
+    "10-20": "10 - 20 JD",
+    "20-30": "20 - 30 JD",
+    "30+": "30+ JD",
+    "male": "Male",
+    "female": "Female"
+  },
+  "doctorCard": {
+    "from": "From",
+    "visitors": "Visitors",
+    "specializedIn": "Specialized In",
+    "fees": "Fees",
+    "feesNote": "Don't Include Procedures",
+    "nextAvailable": "Next Available",
+    "bookAppointment": "Book Appointment"
+  },
+  "aboutUs": {
+    "title": "About Us",
+    "description": "At Weqayah, we are proud to be the beacon to the future of medical software and to disrupt the industry.",
+    "explore": "Explore",
+    "whoWeAre": "Who We Are",
+    "whoWeAreDescription": "A digital haven for patients and doctors, to connect and show their stories.",
+    "whoWeServe": "Who We Serve",
+    "whoWeServeDescription": "We serve both doctors and patients and bridge the gap between them and publish their stories.",
+    "ourMission": "Our Mission",
+    "ourMissionDescription": "To be trusted by both the medical community and the patients community worldwide.",
+    "ourStory": "Our Story",
+    "ourStoryDescription": "Weqayah was created as a bridge and platform to showcase the doctors and patients stories and fill the gap."
+  },
+  "help": {
+    "title": "Help & Support",
+    "description": "Get help and support for your healthcare needs",
+    "form": {
+      "title": "Help Form",
+      "description": "Send us a message and we'll get back to you within 24 hours",
+      "name": "Name",
+      "namePlaceholder": "Enter your name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email address",
+      "subject": "Subject",
+      "subjectPlaceholder": "What is this about?",
+      "message": "Message",
+      "messagePlaceholder": "Describe your issue or question in detail",
+      "submit": "Submit"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to common questions about our services"
+    },
+    "placeholder": {
+      "title": "We're Here to Help",
+      "description": "Our support team is ready to assist you with any questions or concerns you may have."
+    }
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "subtitle": "Already have an account?",
+    "signInLink": "Sign In",
+    "userType": {
+      "patient": "Patient",
+      "doctor": "Doctor"
+    },
+    "form": {
+      "selectRole": "Select your role",
+      "emailAddress": "Email address",
+      "emailPlaceholder": "Enter your email address",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "hidePassword": "Hide",
+      "showPassword": "Show",
+      "countryResidence": "Country of residence",
+      "countryPlaceholder": "Select your country",
+      "createAccount": "Create an account",
+      "loading": "Creating account..."
+    },
+    "advertisement": "Advertisement"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "subtitle": "Don't have an account?",
+    "signUpLink": "Sign Up",
+    "form": {
+      "emailAddress": "Email address",
+      "emailPlaceholder": "Enter your email address",
+      "password": "Your password",
+      "passwordPlaceholder": "Enter your password",
+      "hidePassword": "Hide",
+      "showPassword": "Show",
+      "signIn": "Sign In",
+      "loading": "Signing in...",
+      "forgotPassword": "Forget your password?"
+    },
+    "advertisement": "Advertisement"
+  },
+  "medicalNews": {
+    "title": "Medical News",
+    "description": "Get the latest updates and discoveries in the medical world from Weqayah",
+    "featuredArticle": "Featured Article",
+    "readFullArticle": "Read Full Article",
+    "latestArticles": "Latest Articles",
+    "readMore": "Read More"
+  },
+  "blog": {
+    "latestPosts": "Latest Posts"
+  }
+}

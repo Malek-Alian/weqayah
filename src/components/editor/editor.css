@@ -1,0 +1,379 @@
+/* Lexical Editor Theme Styles */
+
+/* Toolbar Styles */
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0.5rem 0.5rem 0 0;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--foreground);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.toolbar-item:hover {
+  background-color: var(--accent);
+  border-color: var(--ring);
+}
+
+.toolbar-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toolbar-item.active {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.toolbar-item.spaced {
+  margin-right: 0.25rem;
+}
+
+.divider {
+  width: 1px;
+  height: 1.5rem;
+  background-color: var(--border);
+  margin: 0 0.25rem;
+}
+
+/* Format Icons */
+.format {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.format.undo::before {
+  content: '↶';
+  font-weight: bold;
+}
+
+.format.redo::before {
+  content: '↷';
+  font-weight: bold;
+}
+
+.format.bold::before {
+  content: 'B';
+  font-weight: bold;
+}
+
+.format.italic::before {
+  content: 'I';
+  font-style: italic;
+}
+
+.format.underline::before {
+  content: 'U';
+  text-decoration: underline;
+}
+
+.format.strikethrough::before {
+  content: 'S';
+  text-decoration: line-through;
+}
+
+.format.left-align::before {
+  content: '⬅';
+}
+
+.format.center-align::before {
+  content: '⬆';
+}
+
+.format.right-align::before {
+  content: '➡';
+}
+
+.format.justify-align::before {
+  content: '⬌';
+}
+
+/* Editor Container */
+.editor-container {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--background);
+}
+
+.editor-inner {
+  position: relative;
+}
+
+/* Editor Input Area */
+.editor-input {
+  min-height: 200px;
+  padding: 1rem;
+  color: var(--foreground);
+  background-color: var(--background);
+  border: 0;
+  outline: none;
+  resize: none;
+  font-family: inherit;
+}
+
+/* Placeholder */
+.editor-placeholder {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--muted-foreground);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Paragraph */
+.editor-paragraph {
+  margin-bottom: 0.5rem;
+}
+
+.editor-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.editor-heading-h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+
+.editor-heading-h1:first-child {
+  margin-top: 0;
+}
+
+.editor-heading-h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.editor-heading-h2:first-child {
+  margin-top: 0;
+}
+
+.editor-heading-h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.editor-heading-h3:first-child {
+  margin-top: 0;
+}
+
+.editor-heading-h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.editor-heading-h4:first-child {
+  margin-top: 0;
+}
+
+.editor-heading-h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.editor-heading-h5:first-child {
+  margin-top: 0;
+}
+
+/* Text Formatting */
+.editor-text-bold {
+  font-weight: 700;
+}
+
+.editor-text-italic {
+  font-style: italic;
+}
+
+.editor-text-underline {
+  text-decoration: underline;
+}
+
+.editor-text-strikethrough {
+  text-decoration: line-through;
+}
+
+.editor-text-underlineStrikethrough {
+  text-decoration: underline line-through;
+}
+
+.editor-text-code {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas,
+    'Liberation Mono', Menlo, monospace;
+}
+
+.editor-text-hashtag {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.editor-text-overflowed {
+  color: var(--muted-foreground);
+}
+
+/* Code Block */
+.editor-code {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas,
+    'Liberation Mono', Menlo, monospace;
+  font-size: 0.875rem;
+  overflow-x: auto;
+  display: block;
+  margin: 1rem 0;
+}
+
+/* Quote */
+.editor-quote {
+  border-left: 4px solid var(--primary);
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--muted-foreground);
+  background-color: rgba(var(--muted), 0.5);
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+/* Lists */
+.editor-list-ol {
+  list-style-type: decimal;
+  list-style-position: inside;
+  margin: 0.5rem 0;
+}
+
+.editor-list-ol li {
+  margin-bottom: 0.25rem;
+}
+
+.editor-list-ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  margin: 0.5rem 0;
+}
+
+.editor-list-ul li {
+  margin-bottom: 0.25rem;
+}
+
+.editor-listitem {
+  margin-left: 1rem;
+}
+
+.editor-nested-listitem {
+  margin-left: 2rem;
+}
+
+/* Links */
+.editor-link {
+  color: var(--primary);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.editor-link:hover {
+  color: rgba(var(--primary), 0.8);
+}
+
+/* Images */
+.editor-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* Dark mode adjustments */
+.dark .editor-input {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.dark .editor-placeholder {
+  color: var(--muted-foreground);
+}
+
+.dark .editor-code {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.dark .editor-quote {
+  background-color: rgba(var(--muted), 0.5);
+  color: var(--muted-foreground);
+  border-left-color: var(--primary);
+}
+
+/* Focus states */
+.editor-input:focus {
+  outline: none;
+}
+
+/* RTL Support */
+[dir='rtl'] .editor-placeholder {
+  right: 1rem;
+  left: auto;
+}
+
+[dir='rtl'] .editor-quote {
+  border-right: 4px solid var(--primary);
+  border-left: 0;
+  padding-right: 1rem;
+  padding-left: 0;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+[dir='rtl'] .editor-listitem {
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+[dir='rtl'] .editor-nested-listitem {
+  margin-right: 2rem;
+  margin-left: 0;
+}
