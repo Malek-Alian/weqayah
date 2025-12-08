@@ -1,6 +1,6 @@
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '../../../components/ui/button';
-import { Card, CardContent } from '../../../components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { LuArrowUpRight } from 'react-icons/lu';
 
 const StatsCard = ({
   title,
@@ -26,7 +26,7 @@ const StatsCard = ({
             onClick={onButtonClick}
           >
             {buttonText}
-            <ArrowUpRight className='ml-1 h-3 w-3' />
+            <LuArrowUpRight className='ml-1 h-3 w-3' />
           </Button>
         </div>
       </CardContent>

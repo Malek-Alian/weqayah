@@ -1,27 +1,78 @@
+import AdImage from '@/components/AdImage';
 import FooterNavigation from '@/components/FooterNavigation';
 import LanguageSelector from '@/components/LanguageSelector';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { AdArea } from '@/components/ui/ad-area';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useAuth } from '@/contexts/AuthContext';
 import { isRTL } from '@/i18n';
-import { Eye, EyeOff, X } from 'lucide-react';
-import { useState } from 'react';
+import { get, post } from '@/lib/api';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { LuEye, LuEyeOff, LuX } from 'react-icons/lu';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+
 import logo from '../../assets/weqayah-logo.png';
 
 function SigninPage() {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
-
+  const navigate = useNavigate();
+  const {
+    refreshUser,
+    isAuthenticated,
+    user,
+    loading: authLoading,
+  } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+  const [advertisement, setAdvertisement] = useState({});
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
+
+  const fetchAdvertisement = async () => {
+    try {
+      const response = await get('/ads/active?section=SIGN_IN_SIGN_UP');
+      setAdvertisement(response?.data?.[0]);
+    } catch (error) {
+      toast.error('Error fetching advertisement. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAdvertisement();
+  }, []);
+
+  // Redirect authenticated users away from signin page
+  useEffect(() => {
+    if (!authLoading && isAuthenticated && user) {
+      // Redirect based on user role
+      if (user.role === 'ADMIN') {
+        navigate('/admin', { replace: true });
+      } else {
+        navigate('/', { replace: true });
+      }
+    }
+  }, [authLoading, isAuthenticated, user, navigate]);
+
+  // Show loading state while checking authentication
+  if (authLoading) {
+    return <LoadingSpinner />;
+  }
+
+  // Don't render the form if user is authenticated (redirect will happen)
+  if (isAuthenticated && user) {
+    return null;
+  }
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({
@@ -32,17 +83,48 @@ function SigninPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setSubmitLoading(true);
 
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log('Signin data:', formData);
-      // Handle successful signIn
+      const response = await post('/auth/login', {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      const data = response.data;
+
+      if (data) {
+        if (data.accessToken) {
+          localStorage.setItem('accessToken', data.accessToken);
+
+          // Refresh user state in AuthContext
+          try {
+            await refreshUser();
+          } catch (profileError) {
+            toast.error(
+              'Failed to fetch user profile after login:',
+              profileError
+            );
+            // Continue with navigation even if profile fetch fails
+          }
+        }
+
+        // Navigate based on user role
+        if (data.role === 'ADMIN') {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
+      }
     } catch (error) {
-      console.error('Signin error:', error);
+      toast.error(
+        error.response?.data?.message ||
+          error.message ||
+          t('signIn.form.error') ||
+          'Login failed. Please try again.'
+      );
     } finally {
-      setIsLoading(false);
+      setSubmitLoading(false);
     }
   };
 
@@ -56,8 +138,12 @@ function SigninPage() {
               {/* Left Side - Ad Area */}
               <AdArea
                 size='large'
-                className='w-full h-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-e-none border-0'
+                className='w-full h-full min-h-24 bg-primary hover:bg-primary/90 text-primary-foreground rounded-b-none sm:rounded-e-none border-0'
                 placeholder={t('signIn.advertisement')}
+                loading={isLoading}
+                children={
+                  <AdImage imageUrl={advertisement?.images?.[0]?.imageUrl} />
+                }
               />
 
               {/* Right Side - Signin Form */}
@@ -71,7 +157,7 @@ function SigninPage() {
                   }`}
                   onClick={() => window.history.back()}
                 >
-                  <X className='h-4 w-4' />
+                  <LuX className='h-4 w-4' />
                 </Button>
 
                 {/* Language Selector */}
@@ -163,9 +249,9 @@ function SigninPage() {
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? (
-                          <EyeOff className='h-4 w-4 text-gray-400' />
+                          <LuEyeOff className='h-4 w-4 text-gray-400' />
                         ) : (
-                          <Eye className='h-4 w-4 text-gray-400' />
+                          <LuEye className='h-4 w-4 text-gray-400' />
                         )}
                       </Button>
                     </div>
@@ -175,9 +261,9 @@ function SigninPage() {
                   <Button
                     type='submit'
                     className='w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3'
-                    disabled={isLoading}
+                    disabled={submitLoading}
                   >
-                    {isLoading ? (
+                    {submitLoading ? (
                       <div className='flex items-center gap-2'>
                         <div className='w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin' />
                         {t('signIn.form.loading')}

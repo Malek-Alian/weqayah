@@ -15,11 +15,12 @@ import {
 import { useAuth } from '@/contexts/AuthContext';
 import { isRTL } from '@/i18n';
 import { cn } from '@/lib/utils';
-import { HelpCircle, Menu, User, X } from 'lucide-react';
+import { LuCircleHelp, LuMenu, LuUser, LuX } from 'react-icons/lu';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import LanguageSelector from './LanguageSelector';
+
 import logo from '../assets/weqayah-logo.png';
 
 const navigationItems = [
@@ -112,7 +113,7 @@ function Navigation() {
                 size='sm'
                 className='hidden sm:flex tablet:text-xs lg:text-sm'
               >
-                <HelpCircle className='me-1 h-4 w-4 tablet:me-2' />
+                <LuCircleHelp className='me-1 h-4 w-4 tablet:me-2' />
                 <span className='hidden tablet:inline'>
                   {t('navigation.help')}
                 </span>
@@ -127,16 +128,16 @@ function Navigation() {
                   size='sm'
                   className='flex items-center space-x-1 tablet:space-x-2'
                 >
-                  <User className='h-4 w-4' />
+                  <LuUser className='h-4 w-4' />
                   <span className='hidden sm:inline tablet:text-xs lg:text-sm'>
-                    {isAuthenticated()
+                    {isAuthenticated
                       ? user?.name || t('navigation.account')
                       : t('navigation.account')}
                   </span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align='end' className='w-56'>
-                {isAuthenticated() ? (
+                {isAuthenticated ? (
                   <>
                     {authenticatedAccountItems.map((item) => (
                       <DropdownMenuItem key={item.nameKey} asChild>
@@ -150,7 +151,7 @@ function Navigation() {
                     ))}
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
-                      className='text-red-600 focus:text-red-600'
+                      className='text-red-600 focus:text-red-600 cursor-pointer'
                       onClick={logout}
                     >
                       {t('navigation.signOut')}
@@ -181,9 +182,9 @@ function Navigation() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className='h-5 w-5' />
+                <LuX className='h-5 w-5' />
               ) : (
-                <Menu className='h-5 w-5' />
+                <LuMenu className='h-5 w-5' />
               )}
             </Button>
           </div>
@@ -214,7 +215,7 @@ function Navigation() {
                 >
                   {t('navigation.help')}
                 </Link>
-                {isAuthenticated() ? (
+                {isAuthenticated ? (
                   <>
                     <Link
                       to='/admin'

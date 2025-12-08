@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { isRTL } from '@/i18n';
 import { cn } from '@/lib/utils';
-import { Globe } from 'lucide-react';
+import { LuGlobe } from 'react-icons/lu';
 import { useTranslation } from 'react-i18next';
 
 const languages = [
@@ -33,7 +33,7 @@ function LanguageSelector({ className }) {
           size='sm'
           className={cn('flex items-center space-x-2', className)}
         >
-          <Globe className='h-4 w-4' />
+          <LuGlobe className='h-4 w-4' />
           <span className='hidden sm:inline'>{currentLanguage.name}</span>
         </Button>
       </DropdownMenuTrigger>

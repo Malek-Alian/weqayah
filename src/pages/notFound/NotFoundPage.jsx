@@ -1,8 +1,8 @@
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Home, Search, ArrowLeft, Stethoscope } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { LuArrowLeft, LuHouse, LuSearch, LuStethoscope } from 'react-icons/lu';
+import { Link } from 'react-router-dom';
 
 function NotFoundPage() {
   const { t } = useTranslation();
@@ -15,7 +15,7 @@ function NotFoundPage() {
             {/* 404 Icon */}
             <div className='mb-8'>
               <div className='inline-flex items-center justify-center w-24 h-24 bg-primary/10 rounded-full mb-4'>
-                <Stethoscope className='w-12 h-12 text-primary' />
+                <LuStethoscope className='w-12 h-12 text-primary' />
               </div>
               <h1 className='text-6xl font-bold text-primary mb-2'>404</h1>
               <h2 className='text-2xl font-semibold text-foreground mb-4'>
@@ -30,7 +30,7 @@ function NotFoundPage() {
             <div className='flex flex-col sm:flex-row gap-4 justify-center mb-8'>
               <Button asChild className='flex items-center gap-2'>
                 <Link to='/'>
-                  <Home className='w-4 h-4' />
+                  <LuHouse className='w-4 h-4' />
                   {t('notFound.goHome')}
                 </Link>
               </Button>
@@ -40,7 +40,7 @@ function NotFoundPage() {
                 className='flex items-center gap-2'
               >
                 <Link to='/find-doctor'>
-                  <Search className='w-4 h-4' />
+                  <LuSearch className='w-4 h-4' />
                   {t('notFound.findDoctor')}
                 </Link>
               </Button>
@@ -56,28 +56,28 @@ function NotFoundPage() {
                   to='/medical-news'
                   className='flex items-center gap-2 p-3 rounded-lg border hover:bg-accent transition-colors text-sm'
                 >
-                  <ArrowLeft className='w-4 h-4 text-muted-foreground' />
+                  <LuArrowLeft className='w-4 h-4 text-muted-foreground' />
                   <span>{t('navigation.medicalNews')}</span>
                 </Link>
                 <Link
                   to='/blog'
                   className='flex items-center gap-2 p-3 rounded-lg border hover:bg-accent transition-colors text-sm'
                 >
-                  <ArrowLeft className='w-4 h-4 text-muted-foreground' />
+                  <LuArrowLeft className='w-4 h-4 text-muted-foreground' />
                   <span>{t('navigation.ourBlogs')}</span>
                 </Link>
                 <Link
                   to='/about-us'
                   className='flex items-center gap-2 p-3 rounded-lg border hover:bg-accent transition-colors text-sm'
                 >
-                  <ArrowLeft className='w-4 h-4 text-muted-foreground' />
+                  <LuArrowLeft className='w-4 h-4 text-muted-foreground' />
                   <span>{t('navigation.about')}</span>
                 </Link>
                 <Link
                   to='/help'
                   className='flex items-center gap-2 p-3 rounded-lg border hover:bg-accent transition-colors text-sm'
                 >
-                  <ArrowLeft className='w-4 h-4 text-muted-foreground' />
+                  <LuArrowLeft className='w-4 h-4 text-muted-foreground' />
                   <span>{t('navigation.help')}</span>
                 </Link>
               </div>

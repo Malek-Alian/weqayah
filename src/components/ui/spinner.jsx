@@ -1,18 +1,16 @@
-import { Loader2Icon } from "lucide-react"
+import { LuLoaderCircle } from 'react-icons/lu';
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 
-function Spinner({
-  className,
-  ...props
-}) {
+function Spinner({ className, ...props }) {
   return (
-    <Loader2Icon
-      role="status"
-      aria-label="Loading"
-      className={cn("size-4 animate-spin", className)}
-      {...props} />
+    <LuLoaderCircle
+      role='status'
+      aria-label='Loading'
+      className={cn('size-4 animate-spin', className)}
+      {...props}
+    />
   );
 }
 
-export { Spinner }
+export { Spinner };

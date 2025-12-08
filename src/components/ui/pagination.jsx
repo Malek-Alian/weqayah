@@ -1,13 +1,9 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from 'lucide-react';
-
 import { buttonVariants } from '@/components/ui/button';
 import i18n, { isRTL } from '@/i18n';
 import { cn } from '@/lib/utils';
 import { t } from 'i18next';
+import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
+import { MdMoreHoriz } from 'react-icons/md';
 
 function Pagination({ className, ...props }) {
   return (
@@ -61,7 +57,7 @@ function PaginationPrevious({ className, ...props }) {
       className={cn('gap-1 px-2.5 sm:pl-2.5', className)}
       {...props}
     >
-      {isRTL(i18n.language) ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+      {isRTL(i18n.language) ? <LuChevronRight /> : <LuChevronLeft />}
       <span className='hidden sm:block'>{t('common.previous')}</span>
     </PaginationLink>
   );
@@ -76,7 +72,7 @@ function PaginationNext({ className, ...props }) {
       {...props}
     >
       <span className='hidden sm:block'>{t('common.next')}</span>
-      {isRTL(i18n.language) ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+      {isRTL(i18n.language) ? <LuChevronLeft /> : <LuChevronRight />}
     </PaginationLink>
   );
 }
@@ -89,7 +85,7 @@ function PaginationEllipsis({ className, ...props }) {
       className={cn('flex size-9 items-center justify-center', className)}
       {...props}
     >
-      <MoreHorizontalIcon className='size-4' />
+      <MdMoreHoriz className='size-4' />
       <span className='sr-only'>More pages</span>
     </span>
   );

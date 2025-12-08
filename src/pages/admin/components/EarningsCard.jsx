@@ -1,4 +1,4 @@
-import { FileText } from 'lucide-react';
+import { LuFileText } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
 import {
   Card,
@@ -23,7 +23,7 @@ const EarningsCard = ({ earnings = [] }) => {
           >
             <div className='flex items-center space-x-3'>
               <div className='p-2 bg-orange-100 rounded-lg'>
-                <FileText className='h-4 w-4 text-orange-600' />
+                <LuFileText className='h-4 w-4 text-orange-600' />
               </div>
               <div>
                 <p className='font-medium text-sm'>{earning.title}</p>

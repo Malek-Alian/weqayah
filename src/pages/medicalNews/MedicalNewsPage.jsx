@@ -1,5 +1,5 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -7,8 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import {
   Pagination,
   PaginationContent,
@@ -18,10 +16,13 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { CalendarIcon, ClockIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { LuCalendar, LuClock } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
 
 function MedicalNewsPage() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   // Mock data for medical news articles
   const featuredArticle = {
@@ -109,7 +110,7 @@ function MedicalNewsPage() {
                       {featuredArticle.category}
                     </Badge>
                     <div className='flex items-center text-sm text-muted-foreground'>
-                      <ClockIcon className='w-4 h-4 mr-1' />
+                      <LuClock className='w-4 h-4 mr-1' />
                       {featuredArticle.readTime}
                     </div>
                   </div>
@@ -122,10 +123,15 @@ function MedicalNewsPage() {
                 </CardHeader>
                 <CardContent>
                   <div className='flex items-center text-sm text-muted-foreground mb-4'>
-                    <CalendarIcon className='w-4 h-4 mr-2' />
+                    <LuCalendar className='w-4 h-4 mr-2' />
                     {featuredArticle.date}
                   </div>
-                  <Button className='w-full md:w-auto'>
+                  <Button
+                    className='w-full md:w-auto'
+                    onClick={() =>
+                      navigate(`/medical-news/${featuredArticle.id}`)
+                    }
+                  >
                     {t('medicalNews.readFullArticle')}
                   </Button>
                 </CardContent>
@@ -154,7 +160,7 @@ function MedicalNewsPage() {
                   <div className='flex items-center gap-2 mb-2'>
                     <Badge variant='outline'>{article.category}</Badge>
                     <div className='flex items-center text-sm text-muted-foreground'>
-                      <ClockIcon className='w-4 h-4 mr-1' />
+                      <LuClock className='w-4 h-4 mr-1' />
                       {article.readTime}
                     </div>
                   </div>
@@ -168,10 +174,14 @@ function MedicalNewsPage() {
                 <CardContent>
                   <div className='flex items-center justify-between'>
                     <div className='flex items-center text-sm text-muted-foreground'>
-                      <CalendarIcon className='w-4 h-4 mr-2' />
+                      <LuCalendar className='w-4 h-4 mr-2' />
                       {article.date}
                     </div>
-                    <Button variant='outline' size='sm'>
+                    <Button
+                      variant='outline'
+                      size='sm'
+                      onClick={() => navigate(`/medical-news/${article.id}`)}
+                    >
                       {t('medicalNews.readMore')}
                     </Button>
                   </div>

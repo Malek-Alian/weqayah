@@ -1,72 +1,75 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
 import { cn } from '@/lib/utils';
-import {
-  Book,
-  Building,
-  Contact,
-  Home,
-  Hospital,
-  LogOut,
-  Megaphone,
-  Newspaper,
-  Settings,
-  UserLock,
-  X,
-} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { FaUserDoctor } from 'react-icons/fa6';
+import {
+  LuBook,
+  LuBuilding,
+  LuContact,
+  LuHospital,
+  LuHouse,
+  LuLogOut,
+  LuMegaphone,
+  LuNewspaper,
+  LuSettings,
+  LuX,
+} from 'react-icons/lu';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../../assets/weqayah-logo.png';
 
 const AdminSidebar = ({ isOpen, onClose }) => {
   const { t } = useTranslation();
   const location = useLocation();
+  const { logout } = useAuth();
+  const { user } = useAuth();
 
   const navigationItems = [
     {
       name: t('admin.sidebar.overview', 'Overview'),
       href: '/admin',
-      icon: Home,
+      icon: LuHouse,
     },
     {
       name: t('admin.sidebar.patients', 'Patients'),
       href: '/admin/patients',
-      icon: Contact,
+      icon: LuContact,
     },
     {
       name: t('admin.sidebar.hospitals', 'Hospitals'),
       href: '/admin/hospitals',
-      icon: Hospital,
+      icon: LuHospital,
     },
     {
       name: t('admin.sidebar.clinics', 'Clinics'),
       href: '/admin/clinics',
-      icon: Building,
+      icon: LuBuilding,
     },
     {
       name: t('admin.sidebar.doctors', 'Doctors'),
       href: '/admin/doctors',
-      icon: UserLock,
+      icon: FaUserDoctor,
     },
     {
       name: t('admin.sidebar.news', 'News'),
       href: '/admin/medical-news',
-      icon: Newspaper,
+      icon: LuNewspaper,
     },
     {
       name: t('admin.sidebar.blogs', 'Blogs'),
       href: '/admin/blogs',
-      icon: Book,
+      icon: LuBook,
     },
     {
       name: t('admin.sidebar.advertisements', 'Advertisements'),
       href: '/admin/advertisements',
-      icon: Megaphone,
+      icon: LuMegaphone,
     },
     {
       name: t('admin.sidebar.settings', 'Settings'),
       href: '/admin/settings',
-      icon: Settings,
+      icon: LuSettings,
     },
   ];
 
@@ -75,6 +78,10 @@ const AdminSidebar = ({ isOpen, onClose }) => {
       return location.pathname === '/admin';
     }
     return location.pathname.startsWith(path);
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -109,7 +116,7 @@ const AdminSidebar = ({ isOpen, onClose }) => {
               className='lg:hidden'
               onClick={onClose}
             >
-              <X className='h-5 w-5' />
+              <LuX className='h-5 w-5' />
             </Button>
           </div>
 
@@ -136,7 +143,7 @@ const AdminSidebar = ({ isOpen, onClose }) => {
                 >
                   <Icon
                     className={cn(
-                      'mr-3 h-5 w-5 flex-shrink-0',
+                      'me-3 h-5 w-5 flex-shrink-0',
                       isActive(item.href)
                         ? 'text-primary'
                         : 'text-muted-foreground group-hover:text-accent-foreground'
@@ -158,10 +165,10 @@ const AdminSidebar = ({ isOpen, onClose }) => {
               </Avatar>
               <div className='flex-1 min-w-0'>
                 <p className='text-sm font-medium text-foreground truncate'>
-                  {t('admin.sidebar.admin', 'Admin User')}
+                  {user?.name || 'Admin User'}
                 </p>
                 <p className='text-xs text-muted-foreground truncate'>
-                  {t('admin.sidebar.role', 'Administrator')}
+                  {user?.role}
                 </p>
               </div>
             </div>
@@ -169,8 +176,9 @@ const AdminSidebar = ({ isOpen, onClose }) => {
               variant='ghost'
               size='sm'
               className='w-full mt-3 justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10'
+              onClick={handleLogout}
             >
-              <LogOut className='mr-2 h-4 w-4' />
+              <LuLogOut className='mr-2 h-4 w-4' />
               {t('admin.sidebar.signOut', 'Sign Out')}
             </Button>
           </div>
