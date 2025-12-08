@@ -8,7 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Search } from 'lucide-react';
+import { FaSearch } from 'react-icons/fa';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -163,7 +163,7 @@ const DoctorSearch = ({ onSearch }) => {
                 onClick={handleSearch}
                 className='bg-secondary hover:bg-secondary/90 text-secondary-foreground px-6 py-2 rounded-lg w-full'
               >
-                <Search className='h-5 w-5' />
+                <FaSearch className='h-5 w-5' />
               </Button>
             </div>
           </div>

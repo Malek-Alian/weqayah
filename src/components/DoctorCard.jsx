@@ -1,7 +1,14 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { Star, Clock, DollarSign, User, Calendar, MapPin } from 'lucide-react';
+import { FaStar } from 'react-icons/fa';
+import {
+  LuUser,
+  LuClock4,
+  LuDollarSign,
+  LuMapPin,
+  LuCalendarDays,
+} from 'react-icons/lu';
 import { useTranslation } from 'react-i18next';
 import { Avatar } from './ui/avatar';
 import { AvatarImage } from './ui/avatar';
@@ -12,7 +19,7 @@ const DoctorCard = ({ doctor, onBookAppointment }) => {
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, index) => (
-      <Star
+      <FaStar
         key={index}
         className={`h-4 w-4 ${
           index < Math.floor(rating)
@@ -71,7 +78,7 @@ const DoctorCard = ({ doctor, onBookAppointment }) => {
 
                 {/* Specialization */}
                 <div className='flex items-center gap-2 mb-2'>
-                  <User className='h-4 w-4 text-gray-500' />
+                  <LuUser className='h-4 w-4 text-gray-500' />
                   <span className='text-sm text-gray-600'>
                     {doctor.major} {t('doctorCard.specializedIn')}{' '}
                     {doctor.specialty}
@@ -80,7 +87,7 @@ const DoctorCard = ({ doctor, onBookAppointment }) => {
 
                 {/* Consultation Time */}
                 <div className='flex items-center gap-2 mb-2'>
-                  <Clock className='h-4 w-4 text-gray-500' />
+                  <LuClock4 className='h-4 w-4 text-gray-500' />
                   <span className='text-sm text-gray-600'>
                     {doctor.consultationTime}
                   </span>
@@ -88,7 +95,7 @@ const DoctorCard = ({ doctor, onBookAppointment }) => {
 
                 {/* Fees */}
                 <div className='flex items-center gap-2 mb-3'>
-                  <DollarSign className='h-4 w-4 text-gray-500' />
+                  <LuDollarSign className='h-3.8 w-3.8 text-gray-500' />
                   <span className='text-sm text-gray-600'>
                     {t('doctorCard.fees')}: {doctor.fees} {doctor.currency}
                   </span>
@@ -99,7 +106,7 @@ const DoctorCard = ({ doctor, onBookAppointment }) => {
 
                 {/* Location */}
                 <div className='flex items-center gap-2 mb-3'>
-                  <MapPin className='h-4 w-4 text-gray-500' />
+                  <LuMapPin className='h-3.8 w-3.8 text-gray-500' />
                   <span className='text-sm text-gray-600'>
                     {doctor.location}
                   </span>
@@ -123,7 +130,7 @@ const DoctorCard = ({ doctor, onBookAppointment }) => {
               <div className='col-span-1 flex justify-start md:justify-end'>
                 <div className='flex flex-col items-start gap-3'>
                   <div className='text-start'>
-                    <Calendar className='h-8 w-8 text-primary mb-1' />
+                    <LuCalendarDays className='h-8 w-8 text-primary mb-1' />
                     <p className='text-sm text-gray-600'>
                       {t('doctorCard.nextAvailable')}
                     </p>

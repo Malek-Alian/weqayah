@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { ChevronUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
+import { LuChevronUp } from 'react-icons/lu';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +33,7 @@ const ScrollToTop = () => {
     <div className='fixed bottom-6 right-6 z-50'>
       <Button
         onClick={scrollToTop}
-        size='icon'
+        size='icon-xl'
         className={cn(
           'rounded-full shadow-lg transition-all duration-300 ease-in-out',
           isVisible
@@ -42,7 +42,7 @@ const ScrollToTop = () => {
         )}
         aria-label='Scroll to top'
       >
-        <ChevronUp className='h-4 w-4' />
+        <LuChevronUp className='size-5' />
       </Button>
     </div>
   );

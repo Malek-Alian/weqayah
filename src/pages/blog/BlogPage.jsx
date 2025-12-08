@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/pagination';
 import { t } from 'i18next';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const BlogPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -138,44 +139,46 @@ const BlogPage = () => {
           {/* Posts Grid */}
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12'>
             {currentPosts.map((post) => (
-              <Card
-                key={post.id}
-                className='pt-0 overflow-hidden hover:shadow-lg transition-shadow duration-300'
-              >
-                <div className='relative h-48 overflow-hidden'>
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className='w-full h-full object-cover hover:scale-105 transition-transform duration-300'
-                  />
-                </div>
-                <CardHeader className='pb-3'>
-                  <div className='flex items-center gap-2 mb-2'>
-                    <Badge variant='secondary' className='text-xs'>
-                      {post.category}
-                    </Badge>
+              <Link key={post.id} to={`/blog/${post.id}`}>
+                <Card className='pt-0 overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer h-full'>
+                  <div className='relative h-48 overflow-hidden'>
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className='w-full h-full object-cover hover:scale-105 transition-transform duration-300'
+                    />
                   </div>
-                  <h3 className='text-lg font-semibold text-foreground line-clamp-2 leading-tight'>
-                    {post.title}
-                  </h3>
-                </CardHeader>
-                <CardContent className='pt-0'>
-                  <div className='flex items-center gap-3 text-sm text-muted-foreground'>
-                    <Avatar className='h-6 w-6'>
-                      <AvatarImage src={post.authorAvatar} alt={post.author} />
-                      <AvatarFallback className='text-xs'>
-                        {post.author
-                          .split(' ')
-                          .map((n) => n[0])
-                          .join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className='font-medium'>{post.author}</span>
-                    <span>•</span>
-                    <span>{post.date}</span>
-                  </div>
-                </CardContent>
-              </Card>
+                  <CardHeader className='pb-3'>
+                    <div className='flex items-center gap-2 mb-2'>
+                      <Badge variant='secondary' className='text-xs'>
+                        {post.category}
+                      </Badge>
+                    </div>
+                    <h3 className='text-lg font-semibold text-foreground line-clamp-2 leading-tight'>
+                      {post.title}
+                    </h3>
+                  </CardHeader>
+                  <CardContent className='pt-0'>
+                    <div className='flex items-center gap-3 text-sm text-muted-foreground'>
+                      <Avatar className='h-6 w-6'>
+                        <AvatarImage
+                          src={post.authorAvatar}
+                          alt={post.author}
+                        />
+                        <AvatarFallback className='text-xs'>
+                          {post.author
+                            .split(' ')
+                            .map((n) => n[0])
+                            .join('')}
+                        </AvatarFallback>
+                      </Avatar>
+                      <span className='font-medium'>{post.author}</span>
+                      <span>•</span>
+                      <span>{post.date}</span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
 

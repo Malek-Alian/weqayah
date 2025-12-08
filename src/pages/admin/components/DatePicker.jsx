@@ -1,14 +1,13 @@
-import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { Label } from '@/components/ui/label';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Calendar as CalendarComponent } from '@/components/ui/calendar';
-import { Calendar } from 'lucide-react';
 import { format } from 'date-fns';
+import { LuCalendar } from 'react-icons/lu';
 
 const DatePicker = ({
   sectionKey,
@@ -26,9 +25,9 @@ const DatePicker = ({
         <PopoverTrigger asChild>
           <Button
             variant='outline'
-            className='w-full justify-start text-left font-normal mt-1'
+            className='w-full justify-start text-left font-normal mt-2'
           >
-            <Calendar className='mr-2 h-4 w-4' />
+            <LuCalendar className='mr-2 h-4 w-4' />
             {value ? format(value, 'PPP') : <span>Pick a date</span>}
           </Button>
         </PopoverTrigger>

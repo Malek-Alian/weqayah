@@ -1,15 +1,38 @@
-import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Upload, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { LuUpload, LuX } from 'react-icons/lu';
+import { toast } from 'sonner';
 
 const FilePicker = ({ sectionKey, image, onUpload, onRemove }) => {
   const fileInputRef = React.useRef(null);
   const [isDragOver, setIsDragOver] = useState(false);
 
-  const handleFileSelect = (e) => {
+  // Maximum file size: 10MB (will be compressed before upload)
+  const MAX_FILE_SIZE_MB = 10;
+  const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+  const validateFile = (file) => {
+    // Check file type
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file');
+      return false;
+    }
+
+    // Check file size
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      toast.error(
+        `File size exceeds ${MAX_FILE_SIZE_MB}MB. Please select a smaller image.`
+      );
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleFileSelect = async (e) => {
     const file = e.target.files[0];
-    if (file) {
+    if (file && validateFile(file)) {
       onUpload(sectionKey, image.id, file);
     }
   };
@@ -31,11 +54,11 @@ const FilePicker = ({ sectionKey, image, onUpload, onRemove }) => {
     setIsDragOver(false);
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = async (e) => {
     e.preventDefault();
     setIsDragOver(false);
     const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
+    if (file && validateFile(file)) {
       onUpload(sectionKey, image.id, file);
     }
   };
@@ -63,7 +86,7 @@ const FilePicker = ({ sectionKey, image, onUpload, onRemove }) => {
               className='absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity'
               onClick={handleRemove}
             >
-              <X className='h-4 w-4' />
+              <LuX className='h-4 w-4' />
             </Button>
           </div>
         ) : (
@@ -89,7 +112,7 @@ const FilePicker = ({ sectionKey, image, onUpload, onRemove }) => {
               onDrop={handleDrop}
               onClick={handleClick}
             >
-              <Upload className='h-8 w-8 text-gray-400 mb-2' />
+              <LuUpload className='h-8 w-8 text-gray-400 mb-2' />
               <Button
                 type='button'
                 variant='outline'

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { get } from '../lib/api';
 
 const AuthContext = createContext();
 
@@ -13,120 +13,79 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [accessToken, setAccessToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Check for existing authentication on mount
+  // Function to fetch and refresh user profile from API
+  const refreshUser = async () => {
+    // Check both state and localStorage for token
+    const token = accessToken || localStorage.getItem('accessToken');
+
+    if (!token) {
+      return { success: false, error: 'No token available' };
+    }
+
+    // Update accessToken state if it's not set
+    if (!accessToken) {
+      setAccessToken(token);
+    }
+
+    try {
+      const response = await get('/profile/');
+      if (response.status === 200) {
+        setUser(response.data);
+        return { success: true, user: response.data };
+      } else {
+        throw new Error('Failed to fetch user profile');
+      }
+    } catch (error) {
+      // Only log error if it's not a 401 (unauthorized)
+      if (error.response?.status !== 401) {
+        console.error('Error fetching user profile:', error);
+      }
+      // If profile fetch fails, clear token and user
+      if (error.response?.status === 401) {
+        setAccessToken(null);
+        setUser(null);
+        localStorage.removeItem('accessToken');
+      }
+      return { success: false, error: error.message };
+    }
+  };
+
+  // Check for existing authentication on mount and fetch fresh user data
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
+    const initializeAuth = async () => {
+      const storedToken = localStorage.getItem('accessToken');
 
-    if (storedToken && storedUser) {
-      try {
-        setToken(storedToken);
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error('Error parsing stored user data:', error);
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+      if (storedToken) {
+        setAccessToken(storedToken);
+        await refreshUser();
       }
-    }
-    setLoading(false);
+      setIsLoading(false);
+    };
+
+    initializeAuth();
   }, []);
-
-  const login = async (email, password) => {
-    try {
-      setLoading(true);
-      // TODO: Replace with actual API call
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-
-      const data = await response.json();
-
-      if (data.success) {
-        const { user: userData, token: userToken } = data.data;
-        setUser(userData);
-        setToken(userToken);
-        localStorage.setItem('token', userToken);
-        localStorage.setItem('user', JSON.stringify(userData));
-        return { success: true };
-      } else {
-        throw new Error(data.message || 'Login failed');
-      }
-    } catch (error) {
-      console.error('Login error:', error);
-      return { success: false, error: error.message };
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const register = async (name, email, password) => {
-    try {
-      setLoading(true);
-      // TODO: Replace with actual API call
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Registration failed');
-      }
-
-      const data = await response.json();
-
-      if (data.success) {
-        const { user: userData, token: userToken } = data.data;
-        setUser(userData);
-        setToken(userToken);
-        localStorage.setItem('token', userToken);
-        localStorage.setItem('user', JSON.stringify(userData));
-        return { success: true };
-      } else {
-        throw new Error(data.message || 'Registration failed');
-      }
-    } catch (error) {
-      console.error('Registration error:', error);
-      return { success: false, error: error.message };
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const logout = () => {
     setUser(null);
-    setToken(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    navigate('/signin');
+    setAccessToken(null);
+    localStorage.removeItem('accessToken');
+    // Use window.location for navigation to avoid Router dependency issues
+    window.location.href = '/signin';
   };
 
-  const isAuthenticated = () => {
-    return !!token && !!user;
-  };
+  // Computed value for authentication status
+  const isAuthenticated = !!accessToken && !!user;
 
   const value = {
     user,
-    token,
-    loading,
-    login,
-    register,
+    accessToken,
+    loading: isLoading,
     logout,
     isAuthenticated,
+    refreshUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

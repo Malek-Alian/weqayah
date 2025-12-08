@@ -1,4 +1,6 @@
+import NewPostDialog from '@/components/NewPostDialog';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
   TableBody,
@@ -7,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { get } from '@/lib/api';
 import {
   createColumnHelper,
   flexRender,
@@ -16,8 +19,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useMemo, useState } from 'react';
-import NewPostDialog from '@/components/NewPostDialog';
+import { useEffect, useMemo, useState } from 'react';
+import { toast } from 'sonner';
 
 // Mock data for medical news posts
 const mockMedicalNews = [
@@ -103,6 +106,23 @@ function MedicalNews() {
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState('');
   const [isNewPostDialogOpen, setIsNewPostDialogOpen] = useState(false);
+  const [medicalNews, setMedicalNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchMedicalNews = async () => {
+    try {
+      const response = await get('/blogs');
+      setMedicalNews(response.data);
+    } catch (error) {
+      toast.error('Error fetching medical news. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMedicalNews();
+  }, []);
 
   const columns = useMemo(
     () => [
@@ -230,59 +250,63 @@ function MedicalNews() {
         </div>
 
         {/* Table Card */}
-        <div className='bg-background rounded-lg shadow-sm border border-border overflow-hidden'>
-          <div className='overflow-x-auto'>
-            <Table>
-              <TableHeader>
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <TableRow key={headerGroup.id} className='border-b'>
-                    {headerGroup.headers.map((header) => (
-                      <TableHead
-                        key={header.id}
-                        className='text-primary font-semibold text-sm'
-                      >
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </TableHead>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableHeader>
-              <TableBody>
-                {table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row) => (
-                    <TableRow
-                      key={row.id}
-                      className='hover:bg-gray-50 transition-colors'
-                    >
-                      {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </TableCell>
+        {isLoading ? (
+          <Skeleton className='h-110' />
+        ) : (
+          <div className='bg-background rounded-lg shadow-sm border border-border overflow-hidden'>
+            <div className='overflow-x-auto'>
+              <Table>
+                <TableHeader>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <TableRow key={headerGroup.id} className='border-b'>
+                      {headerGroup.headers.map((header) => (
+                        <TableHead
+                          key={header.id}
+                          className='text-primary font-semibold text-sm'
+                        >
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )}
+                        </TableHead>
                       ))}
                     </TableRow>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className='h-24 text-center text-gray-500'
-                    >
-                      No results.
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
+                  ))}
+                </TableHeader>
+                <TableBody>
+                  {table.getRowModel().rows?.length ? (
+                    table.getRowModel().rows.map((row) => (
+                      <TableRow
+                        key={row.id}
+                        className='hover:bg-gray-50 transition-colors'
+                      >
+                        {row.getVisibleCells().map((cell) => (
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell
+                        colSpan={columns.length}
+                        className='h-24 text-center text-gray-500'
+                      >
+                        No results.
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Pagination */}
         <div className='flex items-center justify-between mt-4'>

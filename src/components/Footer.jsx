@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Linkedin, Facebook, Youtube, Instagram } from 'lucide-react';
+import { FaLinkedin, FaFacebook, FaYoutube, FaInstagram } from 'react-icons/fa';
 
 function Footer() {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ function Footer() {
             className='w-12 h-12 bg-background rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors duration-200'
             aria-label='LinkedIn'
           >
-            <Linkedin className='w-6 h-6 text-blue-600' />
+            <FaLinkedin className='w-6 h-6 text-blue-600' />
           </a>
 
           {/* Facebook */}
@@ -38,7 +38,7 @@ function Footer() {
             className='w-12 h-12 bg-background rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200'
             aria-label='Facebook'
           >
-            <Facebook className='w-6 h-6 text-blue-600' />
+            <FaFacebook className='w-6 h-6 text-blue-600' />
           </a>
 
           {/* YouTube */}
@@ -47,7 +47,7 @@ function Footer() {
             className='w-12 h-12 bg-background rounded-lg flex items-center justify-center hover:bg-gray-100 transition-colors duration-200'
             aria-label='YouTube'
           >
-            <Youtube className='w-6 h-6 text-red-600' />
+            <FaYoutube className='w-6 h-6 text-red-600' />
           </a>
 
           {/* Instagram */}
@@ -56,7 +56,7 @@ function Footer() {
             className='w-12 h-12 bg-background rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors duration-200'
             aria-label='Instagram'
           >
-            <Instagram className='w-6 h-6 text-pink-600' />
+            <FaInstagram className='w-6 h-6 text-pink-600' />
           </a>
         </div>
 

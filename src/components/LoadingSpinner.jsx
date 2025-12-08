@@ -4,7 +4,7 @@ import { Spinner } from './ui/spinner';
 
 const LoadingSpinner = () => (
   <div className='flex h-screen items-center justify-center'>
-    <Button disabled size='sm' variant='outline'>
+    <Button size='sm' variant='outline' className='cursor-default'>
       <Spinner />
       {t('common.pleaseWait')}
     </Button>

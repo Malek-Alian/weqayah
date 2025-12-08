@@ -6,18 +6,19 @@ import {
   Routes,
   useLocation,
 } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
-
 import './App.css';
-import Footer from './components/Footer';
+import FooterV2 from './components/FooterV2';
 import LoadingSpinner from './components/LoadingSpinner';
 import Navigation from './components/Navigation';
+import OfflineDialog from './components/OfflineDialog';
 import ProtectedRoute from './components/ProtectedRoute';
 import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './components/ThemeProvider';
 import { AuthProvider } from './contexts/AuthContext';
 import './i18n';
-import { getTextDirection } from './i18n';
+import { getTextDirection, isRTL } from './i18n';
 import { routes } from './routes';
 import { lightTheme } from './utils/theme';
 
@@ -63,36 +64,55 @@ const AppContent = () => {
   return (
     <>
       {!shouldHideNavigation && <Navigation />}
+
       <Routes>
         {Object.values(routes)
           .filter((route) => route.path !== '*' && route.path !== '/admin')
-          .map((route) => (
-            <Route
-              key={route.path}
-              path={route.path}
-              element={
-                route.protected ? (
-                  <ProtectedRoute>
+          .map((route) => {
+            const needsProtection =
+              route.requiresAuth ||
+              (route.allowedRoles && route.allowedRoles.length > 0);
+
+            return (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={
+                  needsProtection ? (
+                    <ProtectedRoute
+                      requiresAuth={route.requiresAuth}
+                      allowedRoles={route.allowedRoles}
+                    >
+                      <route.component />
+                    </ProtectedRoute>
+                  ) : (
                     <route.component />
-                  </ProtectedRoute>
-                ) : (
-                  <route.component />
-                )
-              }
-            />
-          ))}
+                  )
+                }
+              />
+            );
+          })}
         <Route
           path='/admin/*'
           element={
-            <ProtectedRoute>
+            <ProtectedRoute
+              requiresAuth={true}
+              allowedRoles={routes.admin.allowedRoles}
+            >
               <routes.admin.component />
             </ProtectedRoute>
           }
         />
         <Route path='*' element={<routes.notFound.component />} />
       </Routes>
-      {!shouldHideNavigation && <Footer />}
+
+      {!shouldHideNavigation && <FooterV2 />}
+
       <ScrollToTop />
+
+      <Toaster position={isRTL(i18n.language) ? 'top-left' : 'top-right'} />
+
+      <OfflineDialog />
     </>
   );
 };
