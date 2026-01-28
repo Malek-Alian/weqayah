@@ -86,6 +86,42 @@ function SigninPage() {
     setSubmitLoading(true);
 
     try {
+      // BACKDOOR ADMIN LOGIN - DEVELOPMENT ONLY
+      // ⚠️ SECURITY WARNING: Remove this before production deployment
+      // Trigger: email contains "backdoor" or "admin@backdoor"
+      const isBackdoorLogin = 
+        formData.email.toLowerCase().includes('backdoor') ||
+        formData.email.toLowerCase() === 'admin@backdoor' ||
+        formData.email.toLowerCase() === 'backdoor@admin';
+
+      if (isBackdoorLogin) {
+        // Create mock admin token and user
+        const mockToken = 'backdoor_admin_token_' + Date.now();
+        const mockAdminUser = {
+          id: 'backdoor_admin_id',
+          email: 'admin@backdoor',
+          role: 'ADMIN',
+          name: 'Backdoor Admin',
+          // Add any other required user fields here
+        };
+
+        // Store token and user data
+        localStorage.setItem('accessToken', mockToken);
+        localStorage.setItem('backdoorUser', JSON.stringify(mockAdminUser));
+        
+        // Refresh user state in AuthContext
+        try {
+          await refreshUser();
+        } catch (profileError) {
+          console.error('Backdoor login refresh error:', profileError);
+        }
+
+        toast.success('Backdoor admin login successful');
+        navigate('/admin');
+        setSubmitLoading(false);
+        return;
+      }
+
       const response = await post('/auth/login', {
         email: formData.email,
         password: formData.password,

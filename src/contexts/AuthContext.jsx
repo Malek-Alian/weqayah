@@ -25,6 +25,22 @@ export const AuthProvider = ({ children }) => {
       return { success: false, error: 'No token available' };
     }
 
+    // BACKDOOR ADMIN LOGIN - DEVELOPMENT ONLY
+    // ⚠️ SECURITY WARNING: Remove this before production deployment
+    if (token.startsWith('backdoor_admin_token_')) {
+      const backdoorUserStr = localStorage.getItem('backdoorUser');
+      if (backdoorUserStr) {
+        try {
+          const backdoorUser = JSON.parse(backdoorUserStr);
+          setAccessToken(token);
+          setUser(backdoorUser);
+          return { success: true, user: backdoorUser };
+        } catch (e) {
+          console.error('Error parsing backdoor user:', e);
+        }
+      }
+    }
+
     // Update accessToken state if it's not set
     if (!accessToken) {
       setAccessToken(token);
@@ -48,6 +64,7 @@ export const AuthProvider = ({ children }) => {
         setAccessToken(null);
         setUser(null);
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('backdoorUser');
       }
       return { success: false, error: error.message };
     }
@@ -66,12 +83,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     initializeAuth();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const logout = () => {
     setUser(null);
     setAccessToken(null);
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('backdoorUser'); // Clear backdoor user data
     // Use window.location for navigation to avoid Router dependency issues
     window.location.href = '/signin';
   };
